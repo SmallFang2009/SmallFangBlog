@@ -333,19 +333,19 @@
     .body--light {
       /* intro-header */
       --intro-header-background-image-url-home: url('/img/header_img/newhome_bg2.jpg');
-      --intro-header-background-image-url-post: url('');
-      --intro-header-background-image-url-page: url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: url('https://th.bing.com/th/id/OIP.FRVt6Ozayg4gj3VVcrUhewHaDY?w=310&amp;h=159&amp;c=7&amp;r=0&amp;o=5&amp;pid=1.7');
+      --intro-header-background-image-url-page: url('/https://th.bing.com/th/id/OIP.FRVt6Ozayg4gj3VVcrUhewHaDY?w=310&amp;h=159&amp;c=7&amp;r=0&amp;o=5&amp;pid=1.7');
     }
     .body--dark {
       --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/newhome_bg2.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('https://th.bing.com/th/id/OIP.FRVt6Ozayg4gj3VVcrUhewHaDY?w=310&amp;h=159&amp;c=7&amp;r=0&amp;o=5&amp;pid=1.7');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/https://th.bing.com/th/id/OIP.FRVt6Ozayg4gj3VVcrUhewHaDY?w=310&amp;h=159&amp;c=7&amp;r=0&amp;o=5&amp;pid=1.7');
     }
 
     header.intro-header {
        /*post*/
         background-image: var(--intro-header-background-image-url-post);
-        /* background-image: url(''); */
+        /* background-image: url('https://th.bing.com/th/id/OIP.FRVt6Ozayg4gj3VVcrUhewHaDY?w=310&amp;h=159&amp;c=7&amp;r=0&amp;o=5&amp;pid=1.7'); */
       
     }
 
@@ -389,7 +389,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">1k</span> In Total
+              Words <span class="post-count">989</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -454,67 +454,16 @@
         <blockquote>
 <p>总归来讲，在这个互联网时代，拥有一个个人博客是一件很酷也是很实用的事情。而本文介绍的则是众多搭建博客的方式之一：纯前段部署静态博客页面。</p>
 </blockquote>
-<h1>第一步：准备环境</h1>
-<h2 id="安装Node-js">安装Node.js</h2>
-<p>访问<a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn">Node.js</a>官网，下载安装程序并运行安装（全程无脑下一步即可）。<br>
-安装之后，打开命令提示符（不会打开可以看此文章<a target="_blank" rel="noopener" href="https://tecnobits.com/zh-CN/%E5%A6%82%E4%BD%95%E5%9C%A8-Windows-10-%E5%92%8C-Windows-11-%E4%B8%AD%E6%89%93%E5%BC%80%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6/#:~:text=%E5%9C%A8%20Windows%2010%20%E5%92%8C%20Windows%2011%20%E4%B8%AD%E8%AE%BF%E9%97%AE%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6%E7%9A%84%E6%AD%A5%E9%AA%A4,1%20%E5%8D%95%E5%87%BB%E5%B1%8F%E5%B9%95%E5%B7%A6%E4%B8%8B%E8%A7%92%E7%9A%84%E5%BC%80%E5%A7%8B%E6%8C%89%E9%92%AE%E3%80%82%202%20%E5%9C%A8%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%AD%EF%BC%8C%E9%94%AE%E5%85%A5%E4%B8%8D%E5%B8%A6%E5%BC%95%E5%8F%B7%E7%9A%84%E2%80%9C%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6%E2%80%9D%E3%80%82%203%20%E4%BB%8E%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C%E4%B8%AD%EF%BC%8C%E5%8F%B3%E9%94%AE%E5%8D%95%E5%87%BB%E2%80%9C%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6%E2%80%9D%E5%B9%B6%E9%80%89%E6%8B%A9%E2%80%9C%E4%BB%A5%E7%AE%A1%E7%90%86%E5%91%98%E8%BA%AB%E4%BB%BD%E8%BF%90%E8%A1%8C%E2%80%9D%E3%80%82%204%20%E6%82%A8%E7%8E%B0%E5%9C%A8%E5%8F%AF%E4%BB%A5%E5%9C%A8%E6%96%B0%E7%AA%97%E5%8F%A3%E4%B8%AD%E8%AE%BF%E9%97%AE%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6%E3%80%82">如何在 Windows 10 和 Windows 11 中打开命令提示符</a>），输入<code>node -v</code>，出现如下图所示的版本信息（版本号不一定一致）证明安装成功。<br>
-<img src="https://s2.loli.net/2024/06/24/og6bZSHAkwsatTL.jpg" alt="1.png"></p>
-<h2 id="安装Git版本控制系统">安装Git版本控制系统</h2>
-<p>访问<a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a>官网，点击&quot;Download&quot;下载安装程序，并运行安装（全程无脑下一步即可）。<br>
-<img src="https://s2.loli.net/2024/06/24/DIYcGQBFaLf9wWP.jpg" alt="2.png"><br>
-随后在命令提示符中输入<code>git -v</code>，出现如下图所示的版本信息（版本号不一定一致）证明安装成功。<br>
-<img src="https://s2.loli.net/2024/06/24/QB2d1ZuNAUDoSPH.jpg" alt="3.png"></p>
-<h1>第二步：安装Hexo框架</h1>
-<p>在纯英语路径下新建一个英语命名的文件夹，打开文件夹。单击右键，选择&quot;Git Bash Here&quot;，会弹出一个命令框，如下图所示。<br>
-<img src="https://s2.loli.net/2024/06/24/3856gjHNRnoJE9M.jpg" alt="4.png"><br>
-输入一下五行命令：</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install </span>hexo-cli -g</span><br><span class="line">hexo init <span class="keyword">blog</span></span><br><span class="line"><span class="keyword">cd </span><span class="keyword">blog</span></span><br><span class="line"><span class="keyword">npm </span><span class="keyword">install</span></span><br><span class="line"><span class="keyword">hexo </span>server</span><br></pre></td></tr></table></figure>
-<p>等待执行完成后，打开浏览器，输入<a target="_blank" rel="noopener" href="http://localhost:4000">http://localhost:4000</a> ，就会发现已经有了一个博客网站可供访问，内容如下图所示：<br>
-<img src="https://s2.loli.net/2024/06/24/MU6Il4y1TuQZReW.jpg" alt="5.png"><br>
-点击Git指令框之后，按Ctrl+C停止运行，以防后期出现错误。</p>
-<h1>第三步：更改主题</h1>
-<p>访问Hexo的官方主题提供页面<a target="_blank" rel="noopener" href="https://hexo.io/themes/">Themes</a>，选择一个喜欢的主题。<br>
-此处以图中的&quot;Volantis&quot;为例，来进行接下来的演示。<br>
-如图，点击主题的名称处。<br>
-<img src="https://s2.loli.net/2024/06/24/NZgad4OUwfsvkPV.jpg" alt="6.png"><br>
-进入新的页面之后（最好看一下日期，最后更改时间越晚越好），阅读README文件，按照其文档提示来安装主题。<br>
-以&quot;Volantis&quot;为例，<br>
-<img src="https://s2.loli.net/2024/06/24/KcNEkClQbPAa6qL.jpg" alt="7.png"><br>
-应当先更改&quot;config.yml&quot;中的theme为volantis，后执行<code>npm i hexo-theme-volantis</code><br>
-（当然每个主题操作各不相同，具体情况具体论）<br>
-此时在Git命令框中再次运行<code>hexo s</code>，在浏览器中打开<a target="_blank" rel="noopener" href="http://localhost:4000">http://localhost:4000</a> ，应该就能看到更改了样式之后的博客了。<br>
-<img src="https://s2.loli.net/2024/06/24/5pe3OUn4F6G8dAz.jpg" alt="8.png"></p>
-<h1>第四步：更改主题细节内容、撰写文章</h1>
-<h2 id="更改主题细节内容">更改主题细节内容</h2>
-<p>同样是参照主题的README文件中的说明，修改配置文件，以实现个性化。注意每次完成修改后，在命令框中执行<code>hexo g</code>与<code>hexo s</code>，访问<a target="_blank" rel="noopener" href="http://loaclhost:4000">http://loaclhost:4000</a> ，在预览完成之后按Ctrl+C停止。</p>
-<h2 id="撰写文章">撰写文章</h2>
-<p>打开source/posts文件夹，可在里面用markdown语法编辑文章。markdown语法学习可以参考其官方文档：<a target="_blank" rel="noopener" href="https://markdown.com.cn/intro.html">Markdown 官方教程</a></p>
-<h1>第五步：补全残缺页面</h1>
-<p>以Volantis为例，图中的前四项均无法打开。<br>
-<img src="https://s2.loli.net/2024/06/24/IL9oe7hEaXd52VJ.jpg" alt="9.png"><br>
-我们将鼠标放在按钮上面，观察浏览器左下角，发现“帮助”对应的rul为&quot;/faqs&quot;。<br>
-<img src="https://s2.loli.net/2024/06/24/hxNa9B5Kr84sLZW.jpg" alt="10.png"><br>
-所以在命令框中输入<code>hexo new page faqs</code>即可在source文件夹中生成此页面，并编辑其内容。<br>
-<img src="https://s2.loli.net/2024/06/24/3hpGeWvEw4N7HcX.jpg" alt="11.png"><br>
-以此类推其他的残缺部分。</p>
-<h1>第六步：云端部署</h1>
-<h2 id="将源码上传至GitHub">将源码上传至GitHub</h2>
-<p>访问<a target="_blank" rel="noopener" href="https://github.com">GitHub</a>，先注册一个GitHub账号，并创建一个repository。（可参考文章<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44887575/article/details/131083713">GitHub新建仓库教程</a>）<br>
-配置好SSH密钥，可参考文章<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42310154/article/details/118340458">Github配置ssh key的步骤（大白话+包含原理解释）</a><br>
-随后在配置文件尾部中填写如图内容：<br>
-<img src="https://s2.loli.net/2024/06/24/o6XubdamSZNTnRj.jpg" alt="12.png"><br>
-然后在命令行中执行<code>hexo d</code>，等待代码上传。</p>
-<h2 id="将GitHub存储库连接至Cloudflare-Pages">将GitHub存储库连接至Cloudflare Pages</h2>
-<p>访问<a target="_blank" rel="noopener" href="https://cloudflare.com">Cloudflare</a>，注册一个Cloudflare账号并登录。<br>
-选择左侧Workers和Pages，展开后点击概述。<br>
-<img src="https://s2.loli.net/2024/06/24/6UZJDMiLRnTKFWO.jpg" alt="13.png"><br>
-创建应用程序<br>
-<img src="https://s2.loli.net/2024/06/24/QduB1hGwiz7loUs.jpg" alt="14.png"><br>
-随后连接到存储库<br>
-<img src="https://s2.loli.net/2024/06/24/H9bsyXzqC1V43gS.jpg" alt="15.png"><br>
-等待部署完成，即可在公网访问了</p>
-<h1>最后</h1>
-<p>写文章不易，如果有帮助的话就请在此页面的最下方点击“star”按钮进入我的仓库为我点上一颗star吧~</p>
+<h1 id="第一步：准备环境"><a href="#第一步：准备环境" class="headerlink" title="第一步：准备环境"></a>第一步：准备环境</h1><h2 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h2><p>访问<a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn">Node.js</a>官网，下载安装程序并运行安装（全程无脑下一步即可）。<br>安装之后，打开命令提示符（不会打开可以看此文章<a target="_blank" rel="noopener" href="https://tecnobits.com/zh-CN/%E5%A6%82%E4%BD%95%E5%9C%A8-Windows-10-%E5%92%8C-Windows-11-%E4%B8%AD%E6%89%93%E5%BC%80%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6/#:~:text=%E5%9C%A8%20Windows%2010%20%E5%92%8C%20Windows%2011%20%E4%B8%AD%E8%AE%BF%E9%97%AE%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6%E7%9A%84%E6%AD%A5%E9%AA%A4,1%20%E5%8D%95%E5%87%BB%E5%B1%8F%E5%B9%95%E5%B7%A6%E4%B8%8B%E8%A7%92%E7%9A%84%E5%BC%80%E5%A7%8B%E6%8C%89%E9%92%AE%E3%80%82%202%20%E5%9C%A8%E6%90%9C%E7%B4%A2%E6%A1%86%E4%B8%AD%EF%BC%8C%E9%94%AE%E5%85%A5%E4%B8%8D%E5%B8%A6%E5%BC%95%E5%8F%B7%E7%9A%84%E2%80%9C%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6%E2%80%9D%E3%80%82%203%20%E4%BB%8E%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C%E4%B8%AD%EF%BC%8C%E5%8F%B3%E9%94%AE%E5%8D%95%E5%87%BB%E2%80%9C%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6%E2%80%9D%E5%B9%B6%E9%80%89%E6%8B%A9%E2%80%9C%E4%BB%A5%E7%AE%A1%E7%90%86%E5%91%98%E8%BA%AB%E4%BB%BD%E8%BF%90%E8%A1%8C%E2%80%9D%E3%80%82%204%20%E6%82%A8%E7%8E%B0%E5%9C%A8%E5%8F%AF%E4%BB%A5%E5%9C%A8%E6%96%B0%E7%AA%97%E5%8F%A3%E4%B8%AD%E8%AE%BF%E9%97%AE%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6%E3%80%82">如何在 Windows 10 和 Windows 11 中打开命令提示符</a>），输入<code>node -v</code>，出现如下图所示的版本信息（版本号不一定一致）证明安装成功。<br><img src="https://s2.loli.net/2024/06/24/og6bZSHAkwsatTL.jpg" alt="1.png"></p>
+<h2 id="安装Git版本控制系统"><a href="#安装Git版本控制系统" class="headerlink" title="安装Git版本控制系统"></a>安装Git版本控制系统</h2><p>访问<a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a>官网，点击”Download”下载安装程序，并运行安装（全程无脑下一步即可）。<br><img src="https://s2.loli.net/2024/06/24/DIYcGQBFaLf9wWP.jpg" alt="2.png"><br>随后在命令提示符中输入<code>git -v</code>，出现如下图所示的版本信息（版本号不一定一致）证明安装成功。<br><img src="https://s2.loli.net/2024/06/24/QB2d1ZuNAUDoSPH.jpg" alt="3.png"></p>
+<h1 id="第二步：安装Hexo框架"><a href="#第二步：安装Hexo框架" class="headerlink" title="第二步：安装Hexo框架"></a>第二步：安装Hexo框架</h1><p>在纯英语路径下新建一个英语命名的文件夹，打开文件夹。单击右键，选择”Git Bash Here”，会弹出一个命令框，如下图所示。<br><img src="https://s2.loli.net/2024/06/24/3856gjHNRnoJE9M.jpg" alt="4.png"><br>输入一下五行命令：<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install </span>hexo-cli -g</span><br><span class="line">hexo init <span class="keyword">blog</span></span><br><span class="line"><span class="keyword">cd </span><span class="keyword">blog</span></span><br><span class="line"><span class="keyword">npm </span><span class="keyword">install</span></span><br><span class="line"><span class="keyword">hexo </span>server</span><br></pre></td></tr></table></figure><br>等待执行完成后，打开浏览器，输入<a target="_blank" rel="noopener" href="http://localhost:4000">http://localhost:4000</a> ，就会发现已经有了一个博客网站可供访问，内容如下图所示：<br><img src="https://s2.loli.net/2024/06/24/MU6Il4y1TuQZReW.jpg" alt="5.png"><br>点击Git指令框之后，按Ctrl+C停止运行，以防后期出现错误。</p>
+<h1 id="第三步：更改主题"><a href="#第三步：更改主题" class="headerlink" title="第三步：更改主题"></a>第三步：更改主题</h1><p>访问Hexo的官方主题提供页面<a target="_blank" rel="noopener" href="https://hexo.io/themes/">Themes</a>，选择一个喜欢的主题。<br>此处以图中的”Volantis”为例，来进行接下来的演示。<br>如图，点击主题的名称处。<br><img src="https://s2.loli.net/2024/06/24/NZgad4OUwfsvkPV.jpg" alt="6.png"><br>进入新的页面之后（最好看一下日期，最后更改时间越晚越好），阅读README文件，按照其文档提示来安装主题。<br>以”Volantis”为例，<br><img src="https://s2.loli.net/2024/06/24/KcNEkClQbPAa6qL.jpg" alt="7.png"><br>应当先更改”config.yml”中的theme为volantis，后执行<code>npm i hexo-theme-volantis</code><br>（当然每个主题操作各不相同，具体情况具体论）<br>此时在Git命令框中再次运行<code>hexo s</code>，在浏览器中打开<a target="_blank" rel="noopener" href="http://localhost:4000">http://localhost:4000</a> ，应该就能看到更改了样式之后的博客了。<br><img src="https://s2.loli.net/2024/06/24/5pe3OUn4F6G8dAz.jpg" alt="8.png"></p>
+<h1 id="第四步：更改主题细节内容、撰写文章"><a href="#第四步：更改主题细节内容、撰写文章" class="headerlink" title="第四步：更改主题细节内容、撰写文章"></a>第四步：更改主题细节内容、撰写文章</h1><h2 id="更改主题细节内容"><a href="#更改主题细节内容" class="headerlink" title="更改主题细节内容"></a>更改主题细节内容</h2><p>同样是参照主题的README文件中的说明，修改配置文件，以实现个性化。注意每次完成修改后，在命令框中执行<code>hexo g</code>与<code>hexo s</code>，访问<a target="_blank" rel="noopener" href="http://loaclhost:4000">http://loaclhost:4000</a> ，在预览完成之后按Ctrl+C停止。</p>
+<h2 id="撰写文章"><a href="#撰写文章" class="headerlink" title="撰写文章"></a>撰写文章</h2><p>打开source/posts文件夹，可在里面用markdown语法编辑文章。markdown语法学习可以参考其官方文档：<a target="_blank" rel="noopener" href="https://markdown.com.cn/intro.html">Markdown 官方教程</a></p>
+<h1 id="第五步：补全残缺页面"><a href="#第五步：补全残缺页面" class="headerlink" title="第五步：补全残缺页面"></a>第五步：补全残缺页面</h1><p>以Volantis为例，图中的前四项均无法打开。<br><img src="https://s2.loli.net/2024/06/24/IL9oe7hEaXd52VJ.jpg" alt="9.png"><br>我们将鼠标放在按钮上面，观察浏览器左下角，发现“帮助”对应的rul为”/faqs”。<br><img src="https://s2.loli.net/2024/06/24/hxNa9B5Kr84sLZW.jpg" alt="10.png"><br>所以在命令框中输入<code>hexo new page faqs</code>即可在source文件夹中生成此页面，并编辑其内容。<br><img src="https://s2.loli.net/2024/06/24/3hpGeWvEw4N7HcX.jpg" alt="11.png"><br>以此类推其他的残缺部分。</p>
+<h1 id="第六步：云端部署"><a href="#第六步：云端部署" class="headerlink" title="第六步：云端部署"></a>第六步：云端部署</h1><h2 id="将源码上传至GitHub"><a href="#将源码上传至GitHub" class="headerlink" title="将源码上传至GitHub"></a>将源码上传至GitHub</h2><p>访问<a target="_blank" rel="noopener" href="https://github.com">GitHub</a>，先注册一个GitHub账号，并创建一个repository。（可参考文章<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44887575/article/details/131083713">GitHub新建仓库教程</a>）<br>配置好SSH密钥，可参考文章<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42310154/article/details/118340458">Github配置ssh key的步骤（大白话+包含原理解释）</a><br>随后在配置文件尾部中填写如图内容：<br><img src="https://s2.loli.net/2024/06/24/o6XubdamSZNTnRj.jpg" alt="12.png"><br>然后在命令行中执行<code>hexo d</code>，等待代码上传。</p>
+<h2 id="将GitHub存储库连接至Cloudflare-Pages"><a href="#将GitHub存储库连接至Cloudflare-Pages" class="headerlink" title="将GitHub存储库连接至Cloudflare Pages"></a>将GitHub存储库连接至Cloudflare Pages</h2><p>访问<a target="_blank" rel="noopener" href="https://cloudflare.com">Cloudflare</a>，注册一个Cloudflare账号并登录。<br>选择左侧Workers和Pages，展开后点击概述。<br><img src="https://s2.loli.net/2024/06/24/6UZJDMiLRnTKFWO.jpg" alt="13.png"><br>创建应用程序<br><img src="https://s2.loli.net/2024/06/24/QduB1hGwiz7loUs.jpg" alt="14.png"><br>随后连接到存储库<br><img src="https://s2.loli.net/2024/06/24/H9bsyXzqC1V43gS.jpg" alt="15.png"><br>等待部署完成，即可在公网访问了</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>写文章不易，如果有帮助的话就请在此页面的最下方点击“star”按钮进入我的仓库为我点上一颗star吧~</p>
 
 
         <hr>
@@ -610,7 +559,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">目录</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">第一步：准备环境</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%AE%89%E8%A3%85Node-js"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">安装Node.js</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%AE%89%E8%A3%85Git%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">安装Git版本控制系统</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">第二步：安装Hexo框架</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">第三步：更改主题</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">第四步：更改主题细节内容、撰写文章</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E7%BB%86%E8%8A%82%E5%86%85%E5%AE%B9"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">更改主题细节内容</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%92%B0%E5%86%99%E6%96%87%E7%AB%A0"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">撰写文章</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">第五步：补全残缺页面</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">第六步：云端部署</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%B0%86%E6%BA%90%E7%A0%81%E4%B8%8A%E4%BC%A0%E8%87%B3GitHub"><span class="toc-nav-number">6.1.</span> <span class="toc-nav-text">将源码上传至GitHub</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%B0%86GitHub%E5%AD%98%E5%82%A8%E5%BA%93%E8%BF%9E%E6%8E%A5%E8%87%B3Cloudflare-Pages"><span class="toc-nav-number">6.2.</span> <span class="toc-nav-text">将GitHub存储库连接至Cloudflare Pages</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">最后</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%87%86%E5%A4%87%E7%8E%AF%E5%A2%83"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">第一步：准备环境</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%AE%89%E8%A3%85Node-js"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">安装Node.js</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%AE%89%E8%A3%85Git%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">安装Git版本控制系统</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%AE%89%E8%A3%85Hexo%E6%A1%86%E6%9E%B6"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">第二步：安装Hexo框架</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">第三步：更改主题</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E7%BB%86%E8%8A%82%E5%86%85%E5%AE%B9%E3%80%81%E6%92%B0%E5%86%99%E6%96%87%E7%AB%A0"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">第四步：更改主题细节内容、撰写文章</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E7%BB%86%E8%8A%82%E5%86%85%E5%AE%B9"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">更改主题细节内容</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%92%B0%E5%86%99%E6%96%87%E7%AB%A0"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">撰写文章</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E8%A1%A5%E5%85%A8%E6%AE%8B%E7%BC%BA%E9%A1%B5%E9%9D%A2"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">第五步：补全残缺页面</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E4%BA%91%E7%AB%AF%E9%83%A8%E7%BD%B2"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">第六步：云端部署</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%B0%86%E6%BA%90%E7%A0%81%E4%B8%8A%E4%BC%A0%E8%87%B3GitHub"><span class="toc-nav-number">6.1.</span> <span class="toc-nav-text">将源码上传至GitHub</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%B0%86GitHub%E5%AD%98%E5%82%A8%E5%BA%93%E8%BF%9E%E6%8E%A5%E8%87%B3Cloudflare-Pages"><span class="toc-nav-number">6.2.</span> <span class="toc-nav-text">将GitHub存储库连接至Cloudflare Pages</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">最后</span></a></li></ol>
         
         </div>
       </aside>
