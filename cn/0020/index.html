@@ -591,7 +591,7 @@ So？<br>
     const gitment = new Gitment({
       id: 'Tue Jul 30 2024 22:01:57 GMT+0800', // optional
       owner: '129593198',
-      repo: 'SmallFangBlog-issues',
+      repo: 'https://github.com/SmallFang2009/SmallFangBlog-issues',
       oauth: {
         client_id: 'Ov23lifMQoiowUXhmLJU',
         client_secret: '3f05c22e45b6b1ad4524e107272b0ad7a94a0f08'
@@ -1173,5 +1173,20 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
 
 
 		
-	</body>
+	<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>
