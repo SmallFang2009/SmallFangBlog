@@ -622,7 +622,7 @@
       pagerDirection: 'last',
       createIssueManually: false,
       language: 'zh-CN',
-      proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
+      proxy: 'https://cors.smallfang.us/?url=https://github.com/login/oauth/access_token'
     });
     gitalk.render('gitalk-container');
 
@@ -1216,5 +1216,20 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
 
 
 		
-	</body>
+	<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>
