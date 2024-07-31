@@ -116,6 +116,10 @@
     
 
     
+      <!-- gitment start -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css"/>
+      <!-- gitment end -->
+    
 
     
   
@@ -549,6 +553,61 @@ So？<br>
 
 
 <!-- 2. gitment comment -->
+
+  <!-- gitment start -->
+  <!-- Docs:https://github.com/imsun/gitment -->
+
+  <div id="blog_comments"></div>
+  <!-- <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css"> <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script> -->
+
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"></script>
+
+  <script>
+    const myTheme = {
+      render(state, instance) {
+        const container = document.createElement('div')
+        container.lang = "en-US"
+        container.className = 'gitment-container gitment-root-container'
+
+        // your custom component
+        container.appendChild(instance.renderSomething(state, instance))
+        container.appendChild(instance.renderHeader(state, instance))
+        container.appendChild(instance.renderEditor(state, instance))
+        container.appendChild(instance.renderComments(state, instance))
+        container.appendChild(instance.renderFooter(state, instance))
+        return container
+      },
+      renderSomething(state, instance) {
+        const container = document.createElement('div')
+        container.lang = "en-US"
+        container.className = 'hello_visitor'
+        if (state.user.login) {
+          container.innerText = `Hello ${state.user.login}, Welcome to comment system`
+        }
+        return container
+      }
+    }
+
+    const gitment = new Gitment({
+      id: 'Tue Jul 30 2024 22:01:57 GMT+0800', // optional
+      owner: '129593198',
+      repo: 'https://github.com/SmallFang2009/SmallFangBlog-issues',
+      oauth: {
+        client_id: 'Ov23lifMQoiowUXhmLJU',
+        client_secret: '92fc0fd56fecb051582a4c113b5308f806f9cc5d'
+      },
+      desc: '尽兴地评论吧~',
+      perPage: '10',
+      maxCommentHeight: '250',
+      theme: myTheme,
+      // ... For more available options, check out the documentation below
+    })
+
+    gitment.render('blog_comments')
+    // or gitment.render(document.getElementById('comments')) or document.body.appendChild(gitment.render())
+  </script>
+
+  <!-- gitment end -->
 
 
 <!-- 3. disqus comment -->
