@@ -446,31 +446,34 @@
   <!-- top end -->
   
 
-  <a href="/cn/0019/">
+  <a href="/cn/0021/">
     <h2 class="post-title">
-      如何免费地使用Hexo框架搭建一个个人博客？
+      解决Gitalk的"Error:Network Error"报错问题，通过自行搭建CORS-anywhere服务
     </h2>
     <h3 class="post-subtitle">
-      真的是纯免费哦
+      使用服务器自行搭建CORS-anywhere服务
     </h3>
     <div class="post-content-preview">
-      
-总归来讲，在这个互联网时代，拥有一个个人博客是一件很酷也是很实用的事情。而本文介绍的则是众多搭建博客的方式之一：纯前段部署静态博客页面。
+      问题起源
+Gitalk作为一个很受欢迎的无后端博客评论功能插件，其在调用GitHub的API接口时需要使用到用于支持CORS跨域请求的代理服务。由于配置文件中默认使用的CORS-anywhere项目官方提供的演示接口因被滥用而被添加了限制，导致了Gitalk在使用此接口时会崩溃，碰到下图的情况。
 
-第一步：准备环境
-安装Node.js
-访问Node.js官网，下载安装程序并运行安装（全程无脑下一步即可）。
-安装之后，打开命令提示符（不会打开可以看此文章如何在 Windows 10 和 Windows 11 中打开命令提示符），输入node -v，......
+解决
+搭建一个自己的CORS-anywhere服务。
+注：以下操作需要使用到一台具有公网IP地......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
     Posted by SmallFang on
-    2024-06-23
+    2024-08-01
   </p>
   <div class="tags">
     
-    <a href="/tags/#个人博客" title="个人博客">个人博客</a>
+    <a href="/tags/#Gitalk" title="Gitalk">Gitalk</a>
+    
+    <a href="/tags/#CORS-anywhere" title="CORS-anywhere">CORS-anywhere</a>
+    
+    <a href="/tags/#CORS跨域请求" title="CORS跨域请求">CORS跨域请求</a>
     
   </div>
   
@@ -485,6 +488,45 @@
   <div class="top">
     <div class="iconfont icon-hot animated infinite tada"></div>
   </div>
+  
+  <!-- top end -->
+  
+
+  <a href="/cn/0019/">
+    <h2 class="post-title">
+      如何免费地使用Hexo框架搭建一个个人博客？
+    </h2>
+    <h3 class="post-subtitle">
+      真的是纯免费哦
+    </h3>
+    <div class="post-content-preview">
+      
+总归来讲，在这个互联网时代，拥有一个个人博客是一件很酷也是很实用的事情。而本文介绍的则是众多搭建博客的方式之一：纯前端部署静态博客页面。
+
+第一步：准备环境
+安装Node.js
+访问Node.js官网，下载安装程序并运行安装（全程无脑下一步即可）。
+安装之后，打开命令提示符（不会打开可以看此文章如何在 Windows 10 和 Windows 11 中打开命令提示符），输入node -v，......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by SmallFang on
+    2024-06-23
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#个人博客搭建" title="个人博客搭建">个人博客搭建</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
   
   <!-- top end -->
   
@@ -700,7 +742,7 @@
   </p>
   <div class="tags">
     
-    <a href="/tags/#网站" title="网站">网站</a>
+    <a href="/tags/#暗网建站" title="暗网建站">暗网建站</a>
     
   </div>
   
@@ -739,7 +781,7 @@ Windows Copilot的使用
   </p>
   <div class="tags">
     
-    <a href="/tags/#网站" title="网站">网站</a>
+    <a href="/tags/#Windows Copilot" title="Windows Copilot">Windows Copilot</a>
     
   </div>
   
@@ -775,46 +817,6 @@ Windows Copilot的使用
   <div class="tags">
     
     <a href="/tags/#程序" title="程序">程序</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/cn/0010/">
-    <h2 class="post-title">
-      居然有人把Windows XP Horror做成了真正可以用的操作系统？！
-    </h2>
-    <h3 class="post-subtitle">
-      胆小慎入
-    </h3>
-    <div class="post-content-preview">
-      前言
-大家一定都听说过Windows XP Horror Edition这个病毒吧。没听说过的可以看我的文章我刚刚测试了Windows XP Horror Edition！
-可我在B站里居然看到有大佬做出了可以用的Horror！而且不局限于Windows XP。
-觉得好玩，分享在博客里。
-下载
-点我下载
-说明
-可以在虚拟机环境安装。具体安装可以举一反三我之前的一篇文章Windows和MacO......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by SmallFang on
-    2023-08-01
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#病毒" title="病毒">病毒</a>
     
   </div>
   
@@ -888,6 +890,10 @@ Windows Copilot的使用
 <div class="widget">
   <ul>
     
+    <a href="0021/">
+      <li>解决Gitalk的&#34;Error:Network Error&#34;报错问题，通过自行搭建CORS-anywhere服务</li>
+    </a>
+    
     <a href="0020/">
       <li>解决Edge浏览器无缘无故无法上网的问题</li>
     </a>
@@ -902,10 +908,6 @@ Windows Copilot的使用
     
     <a href="0017/">
       <li>李医生，人民想念你</li>
-    </a>
-    
-    <a href="0015/">
-      <li>位于中国南方地区的金华居然下雪下到道路都积上了！</li>
     </a>
     
   </ul>
@@ -1384,5 +1386,20 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
 
 
 		
-	</body>
+	<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>

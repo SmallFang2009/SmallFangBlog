@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.smallfang.us/cn/0021/</loc>
+    
+    <lastmod>2024-08-01</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.smallfang.us/cn/0020/</loc>
     
     <lastmod>2024-07-30</lastmod>
@@ -207,13 +214,6 @@
   </url>
   
   <url>
-    <loc>https://blog.smallfang.us/tags/%E7%BD%91%E7%AB%99/</loc>
-    <lastmod>2024-08-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.smallfang.us/tags/%E4%B8%8B%E9%9B%AA/</loc>
     <lastmod>2024-08-01</lastmod>
     <changefreq>daily</changefreq>
@@ -242,14 +242,49 @@
   </url>
   
   <url>
-    <loc>https://blog.smallfang.us/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>https://blog.smallfang.us/tags/Edge/</loc>
     <lastmod>2024-08-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.smallfang.us/tags/Edge/</loc>
+    <loc>https://blog.smallfang.us/tags/Windows-Copilot/</loc>
+    <lastmod>2024-08-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.smallfang.us/tags/%E6%9A%97%E7%BD%91%E5%BB%BA%E7%AB%99/</loc>
+    <lastmod>2024-08-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.smallfang.us/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</loc>
+    <lastmod>2024-08-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.smallfang.us/tags/Gitalk/</loc>
+    <lastmod>2024-08-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.smallfang.us/tags/CORS-anywhere/</loc>
+    <lastmod>2024-08-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.smallfang.us/tags/CORS%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/</loc>
     <lastmod>2024-08-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -265,20 +300,6 @@
   </url>
   
   <url>
-    <loc>https://blog.smallfang.us/categories/%E4%B8%93%E4%B8%9A%E5%86%85%E5%AE%B9/</loc>
-    <lastmod>2024-08-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.smallfang.us/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</loc>
-    <lastmod>2024-08-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.smallfang.us/categories/%E7%94%9F%E6%B4%BB/</loc>
     <lastmod>2024-08-01</lastmod>
     <changefreq>daily</changefreq>
@@ -286,7 +307,28 @@
   </url>
   
   <url>
-    <loc>https://blog.smallfang.us/categories/%E4%B8%93%E4%B8%9A%E5%86%85%E5%AE%B9/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>https://blog.smallfang.us/categories/IT/</loc>
+    <lastmod>2024-08-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.smallfang.us/categories/AI/</loc>
+    <lastmod>2024-08-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.smallfang.us/categories/%E7%A7%91%E6%8A%80%E6%96%B0%E9%97%BB/</loc>
+    <lastmod>2024-08-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.smallfang.us/categories/%E5%91%A8%E5%B9%B4%E7%BA%AA%E5%BF%B5/</loc>
     <lastmod>2024-08-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
