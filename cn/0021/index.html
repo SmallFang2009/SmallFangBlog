@@ -394,11 +394,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">7</span> Minutes
+              Estimated Reading Time <span class="post-count">10</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">1.7k</span> In Total
+              Words <span class="post-count">2.5k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -460,12 +460,13 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h1>问题起源</h1>
+        <p><em><strong>此文章于2025年10月5日进行了修改，旨在提供一套更加安全、有效的解决方案。</strong></em></p>
+<h1>问题起源</h1>
 <p>Gitalk作为一个很受欢迎的无后端博客评论功能插件，其在调用GitHub的API接口时需要使用到用于支持CORS跨域请求的代理服务。由于配置文件中默认使用的<a target="_blank" rel="noopener" href="https://github.com/Rob--W/cors-anywhere">CORS-anywhere</a>项目官方提供的演示接口因被滥用而被添加了限制，导致了Gitalk在使用此接口时会崩溃，碰到下图的情况。<br>
 <img src="https://s2.loli.net/2024/08/01/uSq7mVMkp9dIAv2.png" alt="1.png"></p>
 <h1>解决</h1>
-<p>搭建一个自己的CORS-anywhere服务。</p>
-<p><strong>注：以下操作需要使用到一台具有公网IP地址的Linux服务器。如果没有，那么这篇文章将不会起到帮助的作用。</strong></p>
+<p>方法：搭建一个自己的CORS-anywhere服务接口。同时，为了保证规范性和安全性，接口必须采用HTTPS协议，否则依旧会出现问题。</p>
+<p><strong>注：以下操作需要使用到一台有公网IP地址的Linux服务器与一个域名。如果没有，那么这篇文章将不会起到帮助的作用。</strong></p>
 <h2 id="第一步：在服务器上配置Git、Node-js和npm">第一步：在服务器上配置Git、Node.js和npm</h2>
 <h3 id="安装Git">安装Git</h3>
 <p>如果是Ubuntu/Debian操作系统，那么可以运行下面这几行指令：</p>
@@ -479,59 +480,321 @@
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> update</span><br><span class="line">sudo apt-<span class="builtin-name">get</span> install nodejs -y</span><br><span class="line">sudo apt-<span class="builtin-name">get</span> install npm -y</span><br></pre></td></tr></table></figure>
 <p>如果是CentOS操作系统，那么可以运行下面这几行指令：</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo yum update</span><br><span class="line">sudo yum <span class="keyword">install</span> nodejs -y</span><br><span class="line">sudo yum <span class="keyword">install</span> npm -y</span><br></pre></td></tr></table></figure>
-<p>在指令执行完毕后，分别执行<code>node -v</code>和<code>npm -v</code>。如果均有像下图一样返回版本信息，则说明配置成功。<br>
+<p>在指令执行完毕后，分别执行<code>node -v</code>和<code>npm -v</code>。如果均有返回类似于下图的版本信息，则说明配置成功。<br>
 <img src="https://s2.loli.net/2024/08/01/Pekf8xpjRyF9m3l.png" alt="3.png"></p>
-<h2 id="第二步：获取部署项目所需的源码">第二步：获取部署项目所需的源码</h2>
+<h2 id="第二步：为域名申请一个可自动续签的证书">第二步：为域名申请一个可自动续签的证书</h2>
+<p>前面提到，想要Gitalk正常工作，所用的CORS接口必须是HTTPS协议的。因此，一个域名证书是必要的。</p>
+<p>可以实现自动续签证书的办法有很多。我在这里以FreeSSL和域名’<a target="_blank" rel="noopener" href="http://demo.smallfang.us">demo.smallfang.us</a>’为例，演示如何配置。</p>
+<h3 id="安装acme-sh脚本">安装acme.sh脚本</h3>
+<p>首先，安装curl。<br>
+Ubuntu/Debian：<br>
+<code>apt-get install curl</code><br>
+CentOS:<br>
+<code>yum install curl</code></p>
+<p>然后，执行：<br>
+<code>curl https://get.acme.sh | sh</code><br>
+<code>source ~/.bashrc</code></p>
+<p>即完成了安装。</p>
+<h3 id="完成域名所有权验证">完成域名所有权验证</h3>
+<p>首先，打开<a target="_blank" rel="noopener" href="https://freessl.cn/">https://freessl.cn/</a> ，并注册一个账户。<br>
+注册完成后，进入<code>证书自动化=&gt;域名授权</code>，后点击<code>添加域名</code>。<br>
+<img src="https://s2.loli.net/2025/10/05/PlNJ49mrds2ioKt.png" alt="4.png"></p>
+<p>在‘域名’一栏填入你将要使用的域名，‘记录类型’选择CNAME，然后点击下一步。<br>
+<img src="https://s2.loli.net/2025/10/05/bmXFSdtKQwl9DZH.png" alt="5.png"></p>
+<p>获取到要求的主机记录和记录值。<br>
+<img src="https://s2.loli.net/2025/10/05/PQeozt3i781n9BZ.png" alt="6.png"></p>
+<p>随后打开你的域名托管系统（我以Cloudflare为例），在你对应的域名下加入要求的值。<br>
+<img src="https://s2.loli.net/2025/10/05/yqHmtxQzpgikBhP.png" alt="7.png"></p>
+<p>填写完验证信息之后点击关闭即可。<br>
+<img src="https://s2.loli.net/2025/10/05/NM4jyGm9ZqwOloY.png" alt="8.png"></p>
+<h3 id="申请证书">申请证书</h3>
+<p>进入<code>ACME客户端</code>一栏，并点击<code>申请证书</code>。<br>
+<img src="https://s2.loli.net/2025/10/05/OqDc8k1Q7STErpZ.png" alt="9.png"></p>
+<p>选择刚刚添加过记录值的域名，并点击下一步。<br>
+<img src="https://s2.loli.net/2025/10/05/8oMqyEf7FrklXi4.png" alt="10.png"></p>
+<p>在FreeSSL提供的两种命令中，复制第一个（即调用acme.sh的那条指令）命令，并执行于服务器中。<br>
+<img src="https://s2.loli.net/2025/10/05/kERFWDxI1XGsQfP.png" alt="11.png"><br>
+得到以下返回信息，即说明成功。<br>
+<img src="https://s2.loli.net/2025/10/05/NhWjAr9EzSQx4DC.png" alt="12.png"><br>
+<img src="https://s2.loli.net/2025/10/05/nzu5RqywB6I8EGb.png" alt="13.png"></p>
+<h3 id="迁移证书">迁移证书</h3>
+<p>acme.sh的官方文档中提到，脚本默认的保存路径仅供内部测试使用，不适合部署于生产环境。因此，我们需要将获取的证书迁移到别的文件夹。<br>
+命令模板：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --install-cert -d example.com \</span><br><span class="line">  --key-<span class="keyword">file</span>       <span class="regexp">/path/</span>to<span class="regexp">/keyfile/</span>key.pem  \</span><br><span class="line">  --fullchain-<span class="keyword">file</span> <span class="regexp">/path/</span>to<span class="regexp">/fullchain/</span>cert.pem \</span><br></pre></td></tr></table></figure>
+<p>注意：<br>
+<strong>第一</strong>   将第1行的’<a target="_blank" rel="noopener" href="http://examlple.com">examlple.com</a>’更改为自己的域名。<br>
+<strong>第二</strong>   将第2行和第3行的路径改为你想要存放证书的路径。</p>
+<p>例如，我应该将指令改为：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">acme<span class="selector-class">.sh</span> --install-cert -d demo<span class="selector-class">.smallfang</span><span class="selector-class">.us</span> \</span><br><span class="line">  --key-file       /root/certs/demo<span class="selector-class">.smallfang</span><span class="selector-class">.us-key</span><span class="selector-class">.pem</span>  \</span><br><span class="line">  --fullchain-file /root/certs/demo<span class="selector-class">.smallfang</span><span class="selector-class">.us-cert</span><span class="selector-class">.pem</span> \</span><br></pre></td></tr></table></figure>
+<p>执行后即可完成迁移证书。</p>
+<p>至此，可自动续签的域名证书申请与配置已经完成。</p>
+<h2 id="第三步：获取部署项目所需的源码">第三步：获取部署项目所需的源码</h2>
 <p>执行以下命令：</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/Rob--W/</span>cors-anywhere.git</span><br><span class="line">cd cors-anywhere</span><br></pre></td></tr></table></figure>
-<p>此时，已经把项目的官方仓库克隆了下来。</p>
-<h2 id="第三步：配置server-js文件">第三步：配置server.js文件</h2>
+<p>此时，已经把项目的官方仓库克隆了下来，并进入了库中。</p>
+<h2 id="第四步：配置server-js文件">第四步：配置server.js文件</h2>
 <p>（如果在下面的操作中出现对vim编辑器的使用不明白的地方，可以参考这篇文章：<a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-vim.html">Linux vi/vim</a>）<br>
 执行指令<code>vim server.js</code>，将会进入使用vim编辑器编辑配置文件的界面。<br>
 双击键盘“d”即可快速清除一整行代码，因此可以通过长按“d”的方式清空配置文件，随后粘贴以下内容：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Listen on a specific host via the HOST environment variable</span></span><br><span class="line"><span class="keyword">var</span> host = process.env.HOST || <span class="string">&#x27;0.0.0.0&#x27;</span>;</span><br><span class="line"><span class="comment">// Listen on a specific port via the PORT environment variable</span></span><br><span class="line"><span class="keyword">var</span> port = process.env.PORT || <span class="number">8080</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Grab the blacklist from the command-line so that we can update the blacklist without deploying</span></span><br><span class="line"><span class="comment">// again. CORS Anywhere is open by design, and this blacklist is not used, except for countering</span></span><br><span class="line"><span class="comment">// immediate abuse (e.g. denial of service). If you want to block all origins except for some,</span></span><br><span class="line"><span class="comment">// use originWhitelist instead.</span></span><br><span class="line"><span class="keyword">var</span> originBlacklist = parseEnvList(process.env.CORSANYWHERE_BLACKLIST);</span><br><span class="line"><span class="comment">// Set originWhitelist to allow only github.com and your blog website.</span></span><br><span class="line"><span class="keyword">var</span> originWhitelist = [<span class="string">&#x27;https://github.com&#x27;</span>, <span class="string">&#x27;https://yourdomain.com&#x27;</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseEnvList</span>(<span class="params">env</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!env) &#123;</span><br><span class="line">    <span class="keyword">return</span> [];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> env.split(<span class="string">&#x27;,&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Set up rate-limiting to avoid abuse of the public CORS Anywhere server.</span></span><br><span class="line"><span class="keyword">var</span> checkRateLimit = <span class="built_in">require</span>(<span class="string">&#x27;./lib/rate-limit&#x27;</span>)(process.env.CORSANYWHERE_RATELIMIT);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cors_proxy = <span class="built_in">require</span>(<span class="string">&#x27;./lib/cors-anywhere&#x27;</span>);</span><br><span class="line">cors_proxy.createServer(&#123;</span><br><span class="line">  originBlacklist: originBlacklist,</span><br><span class="line">  originWhitelist: originWhitelist,</span><br><span class="line">  <span class="comment">// Remove the requireHeader check to allow all headers</span></span><br><span class="line">  <span class="comment">// requireHeader: [&#x27;origin&#x27;, &#x27;x-requested-with&#x27;],</span></span><br><span class="line">  checkRateLimit: checkRateLimit,</span><br><span class="line">  removeHeaders: [</span><br><span class="line">    <span class="string">&#x27;cookie&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;cookie2&#x27;</span>,</span><br><span class="line">    <span class="comment">// Strip Heroku-specific headers</span></span><br><span class="line">    <span class="string">&#x27;x-request-start&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;x-request-id&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;via&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;connect-time&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;total-route-time&#x27;</span>,</span><br><span class="line">    <span class="comment">// Other Heroku added debug headers</span></span><br><span class="line">    <span class="comment">// &#x27;x-forwarded-for&#x27;,</span></span><br><span class="line">    <span class="comment">// &#x27;x-forwarded-proto&#x27;,</span></span><br><span class="line">    <span class="comment">// &#x27;x-forwarded-port&#x27;,</span></span><br><span class="line">  ],</span><br><span class="line">  redirectSameOrigin: <span class="literal">true</span>,</span><br><span class="line">  httpProxyOptions: &#123;</span><br><span class="line">    <span class="comment">// Do not add X-Forwarded-For, etc. headers, because Heroku already adds it.</span></span><br><span class="line">    xfwd: <span class="literal">false</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;).listen(port, host, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Running CORS Anywhere on &#x27;</span> + host + <span class="string">&#x27;:&#x27;</span> + port);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><strong>注意：在上述配置文件中找到“var originWhitelist = [‘<a target="_blank" rel="noopener" href="https://github.com">https://github.com</a>’, ‘<a target="_blank" rel="noopener" href="https://yourdomain.com">https://yourdomain.com</a>’];”这一行代码，按“i”键进入输入模式后将“<a target="_blank" rel="noopener" href="https://yourdomain.com">https://yourdomain.com</a> &quot;改为你自己的博客网站的网址。</strong><br>
-然后按“Esc”并输入“:wq”并按“Enter”回车退出编辑。<br>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> https = <span class="built_in">require</span>(<span class="string">&#x27;https&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> cors_proxy = <span class="built_in">require</span>(<span class="string">&#x27;cors-anywhere&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sslOptions = &#123;</span><br><span class="line">  key: fs.readFileSync(<span class="string">&#x27;/root/example.com&#x27;</span>),</span><br><span class="line">  cert: fs.readFileSync(<span class="string">&#x27;/root/example.com&#x27;</span>),</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> proxy = cors_proxy.createServer(&#123;</span><br><span class="line">  originWhitelist: [<span class="string">&#x27;example.com&#x27;</span>,<span class="string">&#x27;github.com&#x27;</span>], </span><br><span class="line">  requireHeader: [<span class="string">&#x27;origin&#x27;</span>, <span class="string">&#x27;x-requested-with&#x27;</span>],</span><br><span class="line">  removeHeaders: [<span class="string">&#x27;cookie&#x27;</span>, <span class="string">&#x27;cookie2&#x27;</span>],</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> HTTPS_PORT = process.env.HTTPS_PORT || <span class="number">8443</span>;</span><br><span class="line"><span class="keyword">const</span> HTTP_PORT  = process.env.HTTP_PORT  || <span class="number">8080</span>;</span><br><span class="line"></span><br><span class="line">https.createServer(sslOptions, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  proxy.emit(<span class="string">&#x27;request&#x27;</span>, req, res);</span><br><span class="line">&#125;).listen(HTTPS_PORT, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`CORS Anywhere HTTPS server running on port <span class="subst">$&#123;HTTPS_PORT&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> host = req.headers.host.split(<span class="string">&#x27;:&#x27;</span>)[<span class="number">0</span>];</span><br><span class="line">  res.writeHead(<span class="number">301</span>, &#123; <span class="attr">Location</span>: <span class="string">`https://<span class="subst">$&#123;host&#125;</span>:<span class="subst">$&#123;HTTPS_PORT&#125;</span><span class="subst">$&#123;req.url&#125;</span>`</span> &#125;);</span><br><span class="line">  res.end();</span><br><span class="line">&#125;).listen(HTTP_PORT, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Redirecting HTTP traffic on port <span class="subst">$&#123;HTTP_PORT&#125;</span> to HTTPS`</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>注意：这份配置文件还需要经过一些修改再投入使用。</strong></p>
+<p><strong>第一</strong>   在第7行与第8行处，将示例填写的路径更换为自己的路径。<br>
+<strong>第二</strong>   在第12行处，将白名单中的’<a target="_blank" rel="noopener" href="http://example.com">example.com</a>’换为自己的域名。<br>
+<strong>第三</strong>   如果你的服务器上的8080与8443端口已经被使用，请在第17行与第18行处更换运行端口（与之对应后面的测试中也要一同更换）。</p>
+<p>修改完毕后，按“Esc”并输入“:wq”并按“Enter”回车退出编辑。<br>
 配置文件编辑完毕。</p>
-<h2 id="第四步：启动服务并使用pm2管理服务">第四步：启动服务并使用pm2管理服务</h2>
+<h2 id="第五步：启动服务并使用pm2管理服务">第五步：启动服务并使用pm2管理服务</h2>
 <p>执行命令<code>npm install</code>安装依赖项。<br>
-然后执行<code>npm install -g pm2</code>安装pm2。<br>
-随后执行<code>pm2 start server</code>启动服务。如果出现这个界面，则说明启动成功。<br>
-<img src="https://s2.loli.net/2024/08/01/uTPIz7HRfAJr2gX.png" alt="4.png"></p>
-<p>如果没有出现上述界面而是报错，那大概率是配置文件中所指定的运行端口8080被占用。<br>
-我们可以返回到上一步中，将“var port = process.env.PORT || 8080;”这一行所规定的运行端口给修改为8081或其他端口，只要是没被占用的就行。<br>
-修改后再运行<code>pm2 start server</code>，应该就可以正常启动服务了。</p>
-<h2 id="第五步：放通防火墙">第五步：放通防火墙</h2>
-<p>一般服务器在默认情况下是没有配置防火墙的。不过有可能你的服务器默认开启了ufw软件防火墙。执行以下命令以放通对应端口（如果上面修改过端口这里对应也要修改）：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ufw</span> <span class="literal">allow</span> <span class="number">8080</span></span><br></pre></td></tr></table></figure>
+然后执行<code>npm install cors-anywhere</code>，补充安装’cors-anywhere’这一模块。</p>
+<p>首先利用node进行测试：<br>
+<code>node server.js</code><br>
+如果返回以下信息：<br>
+<img src="https://s2.loli.net/2025/10/05/nZcdMRPztYoCpm8.png" alt="14.png"><br>
+说明接口已经可以正常运行。</p>
+<p>但是在该运行模式下，一旦关闭了命令框，就会停止运行。<br>
+因此我们要用pm2来管理该项目。</p>
+<p>按Ctrl+C停止项目运行。<br>
+执行<code>npm install -g pm2</code>安装pm2。<br>
+随后执行</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pm2 <span class="keyword">start</span> <span class="keyword">server</span>.js <span class="comment">--name cors-anywhere</span></span><br><span class="line">pm2 startup</span><br><span class="line">pm2 save</span><br></pre></td></tr></table></figure>
+<p>如果出现这个界面，则说明启动成功。<br>
+<img src="https://s2.loli.net/2025/10/05/S7GxVaDNvj2Alst.png" alt="15.png"></p>
+<p>然后为了防止在acme.sh自动更新证书的时候出幺蛾子，再加一个自动重新装载pm2：<br>
+<code>acme.sh --install-cert -d example.com --reloadcmd  &quot;pm2 restart cors-anywhere&quot;</code><br>
+照例，'<a target="_blank" rel="noopener" href="http://example.com">example.com</a>’自己替换。</p>
+<h2 id="第六步：放通防火墙">第六步：放通防火墙</h2>
+<p>一般服务器在默认情况下是没有配置软件防火墙的。不过有可能你的服务器默认开启了ufw软件防火墙。执行以下命令以放通对应端口（如果上面修改过端口这里对应也要修改）：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ufw</span> <span class="literal">allow</span> <span class="number">8080</span></span><br><span class="line"><span class="attribute">ufw</span> <span class="literal">allow</span> <span class="number">8443</span></span><br></pre></td></tr></table></figure>
 <p>假如你在服务器提供商的控制面板那里开启的硬件防火墙，那么请自行放通，不多赘述。</p>
-<h2 id="第六步（可选）：用Cloudflare-Workers配置反向代理">第六步（可选）：用Cloudflare Workers配置反向代理</h2>
-<p>其实到这一步这项服务已经可以使用了。打开浏览器，访问<a target="_blank" rel="noopener" href="http://xn--IP-0p3cl7jf7fo83a16x:8080">http://你的服务器IP:8080</a> ，返回如下结果说明可用：<br>
-<img src="https://s2.loli.net/2024/08/01/g2XYDKGUtSJZuNb.png" alt="5.png"><br>
-但是此时使用的是http传输协议，并且使用需要添加端口，安全性欠佳、也不方便。我们可以通过Cloudflare Workers来反代这项服务，以此实现https并且无需在访问时添加端口。（当然你也可以用nginx进行反代，但是为了操作的简单，我演示使用Cloudflare Workers）</p>
-<p><strong>注意：以下操作需要你拥有一个可以托管在Cloudflare的域名。如果没有，这一步操作将无法进行。</strong></p>
-<p>打开<a target="_blank" rel="noopener" href="https://dash.cloudflare.com">Cloudflare</a>，注册一个账号。将域名托管到Cloudflare，并解析一个子域名到你刚刚搭建服务使用的服务器。<br>
-然后创建一个Worker，进入代码编辑页面。<br>
-<img src="https://s2.loli.net/2024/08/01/53opS1mKgjUVkdc.png" alt="6.png"><br>
-<img src="https://s2.loli.net/2024/08/01/8lcXdwj7sTzJQD6.png" alt="7.png"><br>
-<img src="https://s2.loli.net/2024/08/01/tcC6JjDnHBFObo3.png" alt="8.png"><br>
-<img src="https://s2.loli.net/2024/08/01/a7RdqcUN9lwLmbW.png" alt="9.png"><br>
-<img src="https://s2.loli.net/2024/08/01/f7A3VwzEutaNdTD.png" alt="10.png"><br>
-进入这个界面<br>
-<img src="https://s2.loli.net/2024/08/01/75WI3xkaviVqTAY.png" alt="11.png"></p>
-<p>清空原有的代码，粘贴一下这一段：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">addEventListener(<span class="string">&#x27;fetch&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">  event.respondWith(handleRequest(event.request))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">handleRequest</span>(<span class="params">request</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> url = <span class="keyword">new</span> URL(request.url)</span><br><span class="line">  <span class="keyword">const</span> targetUrl = <span class="string">`http://example.com:8080<span class="subst">$&#123;url.pathname&#125;</span><span class="subst">$&#123;url.search&#125;</span>`</span></span><br><span class="line">  <span class="keyword">const</span> modifiedRequest = <span class="keyword">new</span> Request(targetUrl, &#123;</span><br><span class="line">    method: request.method,</span><br><span class="line">    headers: request.headers,</span><br><span class="line">    body: request.body,</span><br><span class="line">    redirect: <span class="string">&#x27;follow&#x27;</span></span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">const</span> response = <span class="keyword">await</span> fetch(modifiedRequest)</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Response(response.body, response)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><strong>注意：将上述代码中的&quot;<a target="_blank" rel="noopener" href="http://example.com">http://example.com</a> &quot;更换成你解析到刚刚配置服务的服务器上的域名。</strong><br>
-点右上角部署。<br>
-<img src="https://s2.loli.net/2024/08/01/DSR7KQs8FI2UCMd.png" alt="12.png"></p>
-<p>可以绑定自定义域：<br>
-<img src="https://s2.loli.net/2024/08/01/xo7Zra6fwvAkW5R.png" alt="13.png"></p>
 <h2 id="第七步：将你搭建好的服务接口填写到配置文件中">第七步：将你搭建好的服务接口填写到配置文件中</h2>
 <p>以我为例，在配置文件中的proxy一栏填入<a target="_blank" rel="noopener" href="https://xn--6orv34aw8ad64b/https://github.com/login/oauth/access_token">https://我的接口/https://github.com/login/oauth/access_token</a> ：<br>
 <img src="https://s2.loli.net/2024/08/01/z5VtXilwqISDKWQ.png" alt="14.png"><br>
 随后部署即可解决问题。成效就看本博客的评论系统。</p>
+<h2 id="附：pm2常用指令表（GPT友情整理）">附：pm2常用指令表（GPT友情整理）</h2>
+<p>📘 <strong>PM2 是 Node.js 的进程守护与管理工具，可实现后台运行、自动重启、系统自启等功能。</strong></p>
+<hr>
+<h3 id="🔹-启动与命名">🔹 启动与命名</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">启动程序</td>
+<td style="text-align:left"><code>pm2 start server.js</code></td>
+<td style="text-align:left">启动一个 Node.js 程序</td>
+</tr>
+<tr>
+<td style="text-align:left">指定名称启动</td>
+<td style="text-align:left"><code>pm2 start server.js --name cors-anywhere</code></td>
+<td style="text-align:left">推荐使用，方便管理</td>
+</tr>
+<tr>
+<td style="text-align:left">查看进程列表</td>
+<td style="text-align:left"><code>pm2 list</code></td>
+<td style="text-align:left">查看所有当前运行的进程</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="🔹-日志与监控">🔹 日志与监控</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">查看实时日志</td>
+<td style="text-align:left"><code>pm2 logs</code></td>
+<td style="text-align:left">查看所有进程日志</td>
+</tr>
+<tr>
+<td style="text-align:left">查看指定日志</td>
+<td style="text-align:left"><code>pm2 logs cors-anywhere</code></td>
+<td style="text-align:left">查看单个进程日志</td>
+</tr>
+<tr>
+<td style="text-align:left">查看进程详情</td>
+<td style="text-align:left"><code>pm2 show cors-anywhere</code></td>
+<td style="text-align:left">查看 CPU、内存、状态等详细信息</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="🔹-控制进程">🔹 控制进程</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">重启进程</td>
+<td style="text-align:left"><code>pm2 restart cors-anywhere</code></td>
+<td style="text-align:left">修改配置后使用</td>
+</tr>
+<tr>
+<td style="text-align:left">停止进程</td>
+<td style="text-align:left"><code>pm2 stop cors-anywhere</code></td>
+<td style="text-align:left">停止但保留在列表中</td>
+</tr>
+<tr>
+<td style="text-align:left">删除进程</td>
+<td style="text-align:left"><code>pm2 delete cors-anywhere</code></td>
+<td style="text-align:left">从 PM2 列表彻底移除</td>
+</tr>
+<tr>
+<td style="text-align:left">停止全部</td>
+<td style="text-align:left"><code>pm2 stop all</code></td>
+<td style="text-align:left">停止所有进程</td>
+</tr>
+<tr>
+<td style="text-align:left">删除全部</td>
+<td style="text-align:left"><code>pm2 delete all</code></td>
+<td style="text-align:left">删除所有进程</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="🔹-自动启动设置">🔹 自动启动设置</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">保存当前列表</td>
+<td style="text-align:left"><code>pm2 save</code></td>
+<td style="text-align:left">保存当前运行进程（系统重启可恢复）</td>
+</tr>
+<tr>
+<td style="text-align:left">设置开机自启</td>
+<td style="text-align:left"><code>pm2 startup</code></td>
+<td style="text-align:left">生成并执行系统自启命令</td>
+</tr>
+<tr>
+<td style="text-align:left">清除开机自启</td>
+<td style="text-align:left"><code>pm2 unstartup</code></td>
+<td style="text-align:left">移除自启配置</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="🔹-其他实用命令">🔹 其他实用命令</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">重新加载所有进程</td>
+<td style="text-align:left"><code>pm2 reload all</code></td>
+<td style="text-align:left">平滑重启，不中断请求</td>
+</tr>
+<tr>
+<td style="text-align:left">备份 PM2 配置</td>
+<td style="text-align:left"><code>pm2 save</code></td>
+<td style="text-align:left">保存当前运行状态</td>
+</tr>
+<tr>
+<td style="text-align:left">恢复进程列表</td>
+<td style="text-align:left"><code>pm2 resurrect</code></td>
+<td style="text-align:left">恢复上次保存的列表</td>
+</tr>
+<tr>
+<td style="text-align:left">清空所有记录</td>
+<td style="text-align:left"><code>pm2 delete all &amp;&amp; pm2 save --force</code></td>
+<td style="text-align:left">清空进程记录并重置状态</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="📦-日志文件位置">📦 日志文件位置</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">路径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">默认日志目录</td>
+<td style="text-align:left"><code>~/.pm2/logs/</code></td>
+</tr>
+<tr>
+<td style="text-align:left">查看命令</td>
+<td style="text-align:left"><code>pm2 logs</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="💡-常见用法推荐">💡 常见用法推荐</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">启动 HTTPS 服务</td>
+<td style="text-align:left"><code>pm2 start server-https.js --name cors-anywhere</code></td>
+<td style="text-align:left">启动你的 cors-anywhere 服务</td>
+</tr>
+<tr>
+<td style="text-align:left">保存并设置自启</td>
+<td style="text-align:left"><pre>pm2 save<br>pm2 startup</pre></td>
+<td style="text-align:left">让进程开机自动启动</td>
+</tr>
+<tr>
+<td style="text-align:left">查看运行状态</td>
+<td style="text-align:left"><code>pm2 list</code></td>
+<td style="text-align:left">查看所有服务状态</td>
+</tr>
+<tr>
+<td style="text-align:left">修改配置后重启</td>
+<td style="text-align:left"><code>pm2 restart cors-anywhere</code></td>
+<td style="text-align:left">快速应用配置更新</td>
+</tr>
+<tr>
+<td style="text-align:left">查看运行日志</td>
+<td style="text-align:left"><code>pm2 logs cors-anywhere</code></td>
+<td style="text-align:left">实时查看日志输出</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="🧠-提示">🧠 提示</h3>
+<ul>
+<li>修改脚本或证书后，执行 <code>pm2 restart &lt;name&gt;</code> 即可生效。</li>
+<li>若系统重启后服务未启动，请执行：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 resurrect</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
 <h1>最后</h1>
-<p>写文章不易，如果有帮助的话就请在此页面的最下方点击“star”按钮进入我的仓库为我点上一颗star吧~</p>
+<p>这个问题的研究加上编写文章总共耗费了我几十个小时😭，如果有帮助的话就请在此页面的最下方点击“star”按钮进入我的仓库为我点上一颗star吧~</p>
 
 
         <hr>
@@ -681,7 +944,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">目录</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">问题起源</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">解决</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%85%8D%E7%BD%AEGit%E3%80%81Node-js%E5%92%8Cnpm"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">第一步：在服务器上配置Git、Node.js和npm</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%AE%89%E8%A3%85Git"><span class="toc-nav-number">2.1.1.</span> <span class="toc-nav-text">安装Git</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E9%85%8D%E7%BD%AENode-js%E5%92%8Cnpm"><span class="toc-nav-number">2.1.2.</span> <span class="toc-nav-text">配置Node.js和npm</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E8%8E%B7%E5%8F%96%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E6%89%80%E9%9C%80%E7%9A%84%E6%BA%90%E7%A0%81"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">第二步：获取部署项目所需的源码</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E9%85%8D%E7%BD%AEserver-js%E6%96%87%E4%BB%B6"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">第三步：配置server.js文件</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1%E5%B9%B6%E4%BD%BF%E7%94%A8pm2%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">第四步：启动服务并使用pm2管理服务</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E6%94%BE%E9%80%9A%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">第五步：放通防火墙</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%EF%BC%9A%E7%94%A8Cloudflare-Workers%E9%85%8D%E7%BD%AE%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86"><span class="toc-nav-number">2.6.</span> <span class="toc-nav-text">第六步（可选）：用Cloudflare Workers配置反向代理</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E4%B8%83%E6%AD%A5%EF%BC%9A%E5%B0%86%E4%BD%A0%E6%90%AD%E5%BB%BA%E5%A5%BD%E7%9A%84%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3%E5%A1%AB%E5%86%99%E5%88%B0%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD"><span class="toc-nav-number">2.7.</span> <span class="toc-nav-text">第七步：将你搭建好的服务接口填写到配置文件中</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">最后</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">问题起源</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">解决</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%85%8D%E7%BD%AEGit%E3%80%81Node-js%E5%92%8Cnpm"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">第一步：在服务器上配置Git、Node.js和npm</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%AE%89%E8%A3%85Git"><span class="toc-nav-number">2.1.1.</span> <span class="toc-nav-text">安装Git</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E9%85%8D%E7%BD%AENode-js%E5%92%8Cnpm"><span class="toc-nav-number">2.1.2.</span> <span class="toc-nav-text">配置Node.js和npm</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E4%B8%BA%E5%9F%9F%E5%90%8D%E7%94%B3%E8%AF%B7%E4%B8%80%E4%B8%AA%E5%8F%AF%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%E7%9A%84%E8%AF%81%E4%B9%A6"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">第二步：为域名申请一个可自动续签的证书</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%AE%89%E8%A3%85acme-sh%E8%84%9A%E6%9C%AC"><span class="toc-nav-number">2.2.1.</span> <span class="toc-nav-text">安装acme.sh脚本</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%AE%8C%E6%88%90%E5%9F%9F%E5%90%8D%E6%89%80%E6%9C%89%E6%9D%83%E9%AA%8C%E8%AF%81"><span class="toc-nav-number">2.2.2.</span> <span class="toc-nav-text">完成域名所有权验证</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E7%94%B3%E8%AF%B7%E8%AF%81%E4%B9%A6"><span class="toc-nav-number">2.2.3.</span> <span class="toc-nav-text">申请证书</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%BF%81%E7%A7%BB%E8%AF%81%E4%B9%A6"><span class="toc-nav-number">2.2.4.</span> <span class="toc-nav-text">迁移证书</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E8%8E%B7%E5%8F%96%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E6%89%80%E9%9C%80%E7%9A%84%E6%BA%90%E7%A0%81"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">第三步：获取部署项目所需的源码</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E9%85%8D%E7%BD%AEserver-js%E6%96%87%E4%BB%B6"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">第四步：配置server.js文件</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1%E5%B9%B6%E4%BD%BF%E7%94%A8pm2%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">第五步：启动服务并使用pm2管理服务</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E6%94%BE%E9%80%9A%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-nav-number">2.6.</span> <span class="toc-nav-text">第六步：放通防火墙</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E4%B8%83%E6%AD%A5%EF%BC%9A%E5%B0%86%E4%BD%A0%E6%90%AD%E5%BB%BA%E5%A5%BD%E7%9A%84%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3%E5%A1%AB%E5%86%99%E5%88%B0%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD"><span class="toc-nav-number">2.7.</span> <span class="toc-nav-text">第七步：将你搭建好的服务接口填写到配置文件中</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%99%84%EF%BC%9Apm2%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E8%A1%A8%EF%BC%88GPT%E5%8F%8B%E6%83%85%E6%95%B4%E7%90%86%EF%BC%89"><span class="toc-nav-number">2.8.</span> <span class="toc-nav-text">附：pm2常用指令表（GPT友情整理）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%F0%9F%94%B9-%E5%90%AF%E5%8A%A8%E4%B8%8E%E5%91%BD%E5%90%8D"><span class="toc-nav-number">2.8.1.</span> <span class="toc-nav-text">🔹 启动与命名</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%F0%9F%94%B9-%E6%97%A5%E5%BF%97%E4%B8%8E%E7%9B%91%E6%8E%A7"><span class="toc-nav-number">2.8.2.</span> <span class="toc-nav-text">🔹 日志与监控</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%F0%9F%94%B9-%E6%8E%A7%E5%88%B6%E8%BF%9B%E7%A8%8B"><span class="toc-nav-number">2.8.3.</span> <span class="toc-nav-text">🔹 控制进程</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%F0%9F%94%B9-%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8%E8%AE%BE%E7%BD%AE"><span class="toc-nav-number">2.8.4.</span> <span class="toc-nav-text">🔹 自动启动设置</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%F0%9F%94%B9-%E5%85%B6%E4%BB%96%E5%AE%9E%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-nav-number">2.8.5.</span> <span class="toc-nav-text">🔹 其他实用命令</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%F0%9F%93%A6-%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE"><span class="toc-nav-number">2.8.6.</span> <span class="toc-nav-text">📦 日志文件位置</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%F0%9F%92%A1-%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95%E6%8E%A8%E8%8D%90"><span class="toc-nav-number">2.8.7.</span> <span class="toc-nav-text">💡 常见用法推荐</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%F0%9F%A7%A0-%E6%8F%90%E7%A4%BA"><span class="toc-nav-number">2.8.8.</span> <span class="toc-nav-text">🧠 提示</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">最后</span></a></li></ol>
         
         </div>
       </aside>
@@ -1232,20 +1495,5 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
 
 
 		
-	<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</body>
+	</body>
 </html>
