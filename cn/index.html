@@ -455,11 +455,8 @@
     </h3>
     <div class="post-content-preview">
       此文章于2025年10月5日进行了修改，旨在提供一套更加安全、有效的解决方案。
-问题起源
-Gitalk作为一个很受欢迎的无后端博客评论功能插件，其在调用GitHub的API接口时需要使用到用于支持CORS跨域请求的代理服务。由于配置文件中默认使用的CORS-anywhere项目官方提供的演示接口因被滥用而被添加了限制，导致了Gitalk在使用此接口时会崩溃，碰到下图的情况。
-
-解决
-方法：搭......
+问题起源Gitalk作为一个很受欢迎的无后端博客评论功能插件，其在调用GitHub的API接口时需要使用到用于支持CORS跨域请求的代理服务。由于配置文件中默认使用的CORS-anywhere项目官方提供的演示接口因被滥用而被添加了限制，导致了Gitalk在使用此接口时会崩溃，碰到下图的情况。
+解决方法：搭建一个......
     </div>
   </a>
   
@@ -1388,5 +1385,20 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
 
 
 		
-	</body>
+	<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>
