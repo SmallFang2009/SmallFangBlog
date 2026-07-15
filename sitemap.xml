@@ -284,14 +284,14 @@
   </url>
   
   <url>
-    <loc>https://blog.smallfang.us/tags/%E6%9D%8E%E5%8C%BB%E7%94%9F/</loc>
+    <loc>https://blog.smallfang.us/tags/%E4%B8%8B%E9%9B%AA/</loc>
     <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.smallfang.us/tags/%E4%B8%8B%E9%9B%AA/</loc>
+    <loc>https://blog.smallfang.us/tags/%E6%9D%8E%E5%8C%BB%E7%94%9F/</loc>
     <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -306,20 +306,6 @@
   
   <url>
     <loc>https://blog.smallfang.us/tags/Edge/</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.smallfang.us/tags/Minecraft/</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.smallfang.us/tags/mc/</loc>
     <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -347,14 +333,21 @@
   </url>
   
   <url>
-    <loc>https://blog.smallfang.us/tags/%E5%AD%A6%E4%B8%9A%E5%B7%A5%E4%BD%9C%E6%8A%A5%E5%91%8A/</loc>
+    <loc>https://blog.smallfang.us/tags/Minecraft/</loc>
     <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.smallfang.us/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</loc>
+    <loc>https://blog.smallfang.us/tags/mc/</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.smallfang.us/tags/%E5%AD%A6%E4%B8%9A%E5%B7%A5%E4%BD%9C%E6%8A%A5%E5%91%8A/</loc>
     <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -369,6 +362,13 @@
   
   <url>
     <loc>https://blog.smallfang.us/tags/FreeSSL/</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.smallfang.us/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</loc>
     <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
